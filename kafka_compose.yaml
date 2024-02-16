@@ -82,16 +82,8 @@ services:
             docker-kafka-server:
               properties:
                 bootstrap.servers: "kafka-broker-01:29092"
-              schema-registry:
-                url: "http://kafka-schema-registry:8081"
-              connect:
-                url: "http://kafka-connect:8083"
     ports:
       - "8092:8080"
     depends_on:
-      - ksqldb-cli 
-      - ksqldb-server
       - kafka-broker-01
-      - kafka-schema-registry
-      - kafka-connect
       
