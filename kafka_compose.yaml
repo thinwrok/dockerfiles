@@ -70,7 +70,6 @@ services:
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       PORT: 9021      
 
-
   kafkahq:
     image: tchiotludo/kafkahq:latest
     container_name: kafkahq
