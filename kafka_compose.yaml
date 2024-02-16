@@ -56,7 +56,6 @@ services:
       retries: 3
       start_period: 5s
 
-
   kafkahq:
     image: tchiotludo/kafkahq:latest
     container_name: kafkahq
@@ -114,22 +113,4 @@ services:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
       ELASTICSEARCH_REQUESTTIMEOUT: 90000
 
-  grafana:
-    image: grafana/grafana-oss
-    container_name: grafana
-    hostname: grafana   
-    restart: unless-stopped    
-    ports:
-      - 3000:3000
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=p#filhos03
-      - GF_USERS_ALLOW_SIGN_UP=false
-    volumes:
-      - /docker/data/grafana/provisioning:/etc/grafana/provisioning
-    links:
-      - prometheus        
-    depends_on:
-      - prometheus
-      - kibana
 
