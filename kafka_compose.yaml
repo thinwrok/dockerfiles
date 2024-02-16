@@ -1,6 +1,6 @@
 ##
 ##
-##   docker-compose -f dotnet-compose.yml up -d 
+##   docker-compose -f kafka-compose.yml up -d 
 
 version: '3.9'
 
@@ -247,7 +247,13 @@ services:
                 url: "http://kafka-connect:8083"
     ports:
       - "8092:8080"
-
+    depends_on:
+      - ksqldb-cli 
+      - ksqldb-server
+      - kafka-broker-01
+      - kafka-schema-registry
+      - kafka-connect
+      
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
     container_name: elasticsearch
@@ -256,6 +262,12 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    depends_on:
+      - ksqldb-cli 
+      - ksqldb-server
+      - kafka-broker-01
+      - kafka-schema-registry
+      - kafka-connect      
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
